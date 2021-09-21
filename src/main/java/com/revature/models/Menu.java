@@ -31,7 +31,7 @@ public class Menu {
 			
 			System.out.println("AllDiscs ==> Lits out all discs in your bag!");
 			System.out.println("AddDisc ==> Add a new disc to your bag!");
-			System.out.println("UpdateDisc ==> Change a property on any disc");
+			System.out.println("UpdateDisc ==> Change a property on any disc!");
 			System.out.println("RemoveDisc ==> Remove a disc from your bag!");
 			System.out.println("SpeedCheck ==> Get all discs with a certain speed!");
 			System.out.println("NewBrand ==> Add a new brand and type to the Identities table!");
@@ -70,6 +70,15 @@ public class Menu {
 			}
 			
 			case "SpeedCheck": {
+				System.out.println("What speed are you looking for?");
+				int speedInput = scan.nextInt();
+				scan.nextLine();
+				
+				List<Disc> discBySpeed = dDao.getSpeed(speedInput);
+				
+				for(Disc d : discBySpeed) {
+					System.out.println(d);
+				}
 				
 				break;
 			}
