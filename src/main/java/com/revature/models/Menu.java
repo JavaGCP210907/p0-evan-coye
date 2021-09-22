@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.revature.dao.DiscDao;
+import com.revature.dao.IdentityDao;
 
 public class Menu {
 	
 	DiscDao dDao = new DiscDao();
+	IdentityDao iDao = new IdentityDao();
 	
 	
 	public void displayMenu() {
@@ -29,7 +31,7 @@ public class Menu {
 			
 			//Menu options 
 			
-			System.out.println("AllDiscs ==> Lits out all discs in your bag!");
+			System.out.println("AllDiscs ==> List out all discs in your bag!");
 			System.out.println("AddDisc ==> Add a new disc to your bag!");
 			System.out.println("UpdateDisc ==> Change a property on any disc!");
 			System.out.println("RemoveDisc ==> Remove a disc from your bag!");
@@ -55,6 +57,43 @@ public class Menu {
 			}
 			
 			case "AddDisc": {
+				System.out.println("Enter disc name:");
+				String dname = scan.nextLine();
+				
+				System.out.println("Enter disc speed:");
+				int speed = scan.nextInt();
+				scan.nextLine();
+				
+				System.out.println("Enter disc glide:");
+				int glide = scan.nextInt();
+				scan.nextLine();
+				
+				System.out.println("Enter disc turn:");
+				int turn = scan.nextInt();
+				scan.nextLine();
+				
+				System.out.println("Enter disc fade:");
+				int fade = scan.nextInt();
+				scan.nextLine();
+				
+				System.out.println("Enter disc plastic type:");
+				String plastic = scan.nextLine();
+				
+				System.out.println("Choose a disc identity from the following list");
+				System.out.println("Don't see a match? Use the menu option NewBrand to insert the one you need!");
+				
+				List<Identity> idList = iDao.allIdentities();
+				
+				for(Identity i : idList) {
+					System.out.println(i);
+				}
+				
+				int ident_id = scan.nextInt();
+				
+				Disc d = new Disc(dname, speed, glide, turn, fade, plastic, ident_id);
+				
+				dDao.addDisc(d);
+				
 				
 				break;
 			}
@@ -84,6 +123,15 @@ public class Menu {
 			}
 			
 			case "NewBrand":{
+				System.out.println("What is the brand name of your disc?");
+				String brand = scan.nextLine();
+				
+				System.out.println("What kind of disc is it?");
+				String type = scan.nextLine();
+				
+				Identity i = new Identity(brand, type);
+				
+				iDao.addBrand(i);
 				
 				break;
 			}

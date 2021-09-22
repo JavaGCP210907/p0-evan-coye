@@ -92,7 +92,30 @@ public class DiscDao implements DiscDaoInterface {
 
 	@Override
 	public void addDisc(Disc disc) {
-		// TODO Auto-generated method stub
+		try(Connection conn = ConnectionUtil.getConnection()){
+			
+			
+			String sql = "insert into discs (disc_name, speed, glide, turn, fade, plastic, ident_id)" +
+						 "values (?, ?, ?, ?, ?, ?, ?)";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, disc.getDisc_name());
+			ps.setInt(2, disc.getSpeed());
+			ps.setInt(3, disc.getGlide());
+			ps.setInt(4, disc.getTurn());
+			ps.setInt(5, disc.getFade());
+			ps.setString(6, disc.getPlastic());
+			ps.setInt(7, disc.getIdent_id());
+			
+			ps.executeUpdate();
+			
+			System.out.println(disc.getDisc_name() + " has been added to your bag!");
+			
+		}catch(SQLException e) {
+			System.out.println("Add disc failed");
+			e.printStackTrace();
+		}
 		
 	}
 
