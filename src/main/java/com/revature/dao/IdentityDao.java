@@ -51,7 +51,7 @@ public class IdentityDao implements IdentityDaoInterface {
 			
 			while(rs.next()) {
 				Identity i = new Identity(
-						rs.getInt("ident_id"),
+						rs.getInt("id"),
 						rs.getString("disc_brand"),
 						rs.getString("disc_type")
 						);

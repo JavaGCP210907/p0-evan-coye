@@ -37,7 +37,7 @@ public class DiscDao implements DiscDaoInterface {
 						rs.getInt("turn"),
 						rs.getInt("fade"),
 						rs.getString("plastic"),
-						rs.getInt("ident_id")
+						rs.getInt("id")
 						);
 				
 				disclist.add(d);
@@ -77,7 +77,7 @@ public class DiscDao implements DiscDaoInterface {
 						rs.getInt("turn"),
 						rs.getInt("fade"),
 						rs.getString("plastic"),
-						rs.getInt("ident_id")
+						rs.getInt("id")
 						);
 				speedlist.add(d);
 			}
@@ -95,7 +95,7 @@ public class DiscDao implements DiscDaoInterface {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			
 			
-			String sql = "insert into discs (disc_name, speed, glide, turn, fade, plastic, ident_id)" +
+			String sql = "insert into discs (disc_name, speed, glide, turn, fade, plastic, id)" +
 						 "values (?, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class DiscDao implements DiscDaoInterface {
 			ps.setInt(4, disc.getTurn());
 			ps.setInt(5, disc.getFade());
 			ps.setString(6, disc.getPlastic());
-			ps.setInt(7, disc.getIdent_id());
+			ps.setInt(7, disc.getId());
 			
 			ps.executeUpdate();
 			
@@ -121,13 +121,42 @@ public class DiscDao implements DiscDaoInterface {
 
 	@Override
 	public void removeDisc(int id) {
-		// TODO Auto-generated method stub
+		try(Connection conn = ConnectionUtil.getConnection()){
+			
+			String sql = "delete from discs where id = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			
+			System.out.println("Goodbye forever disc " + id);
+			
+		}catch(SQLException e) {
+			System.out.println("Remove disc failed!");
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
-	public void updateDisc(int id) {
-		// TODO Auto-generated method stub
+	public void updateDiscPlastic(String disc_name, String plastic) {
+		try(Connection conn = ConnectionUtil.getConnection()){
+			
+			String sql = "update discs set plastic = ? where disc_name = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, plastic);
+			ps.setString(2, disc_name);
+			
+			ps.executeUpdate();
+			
+			System.out.println(disc_name + " has a new plastic of " + plastic);
+		}catch(SQLException e) {
+			System.out.println("Update disc failed!");
+			e.printStackTrace();
+		}
 		
 	}
 	

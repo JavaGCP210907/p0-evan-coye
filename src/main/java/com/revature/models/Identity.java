@@ -2,7 +2,7 @@ package com.revature.models;
 
 public class Identity {
 	
-	private int ident_id;
+	private int id;
 	private String disc_brand;
 	private String disc_type;
 	
@@ -17,9 +17,9 @@ public class Identity {
 	
 	
 	
-	public Identity(int ident_id, String disc_brand, String disc_type) {
+	public Identity(int id, String disc_brand, String disc_type) {
 		super();
-		this.ident_id = ident_id;
+		this.id = id;
 		this.disc_brand = disc_brand;
 		this.disc_type = disc_type;
 	}
@@ -38,19 +38,19 @@ public class Identity {
 
 	@Override
 	public String toString() {
-		return "Identity [ident_id=" + ident_id + ", disc_brand=" + disc_brand + ", disc_type=" + disc_type + "]";
+		return "Identity [id=" + id + ", disc_brand=" + disc_brand + ", disc_type=" + disc_type + "]";
 	}
 
 
 
-	public int getIdent_id() {
-		return ident_id;
+	public int getId() {
+		return id;
 	}
 
 
 
-	public void setIdent_id(int ident_id) {
-		this.ident_id = ident_id;
+	public void setIdent_id(int id) {
+		this.id = id;
 	}
 
 
@@ -85,7 +85,7 @@ public class Identity {
 		int result = 1;
 		result = prime * result + ((disc_brand == null) ? 0 : disc_brand.hashCode());
 		result = prime * result + ((disc_type == null) ? 0 : disc_type.hashCode());
-		result = prime * result + ident_id;
+		result = prime * result + id;
 		return result;
 	}
 
@@ -110,7 +110,7 @@ public class Identity {
 				return false;
 		} else if (!disc_type.equals(other.disc_type))
 			return false;
-		if (ident_id != other.ident_id)
+		if (id != other.id)
 			return false;
 		return true;
 	}

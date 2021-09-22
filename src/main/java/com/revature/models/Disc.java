@@ -9,7 +9,7 @@ public class Disc {
 	private int turn;
 	private int fade; 
 	private String plastic;
-	private int ident_id;
+	private int id;
 	
 	
 	
@@ -23,7 +23,7 @@ public class Disc {
 
 
 
-	public Disc(int disc_id, String disc_name, int speed, int glide, int turn, int fade, String plastic, int ident_id) {
+	public Disc(int disc_id, String disc_name, int speed, int glide, int turn, int fade, String plastic, int id) {
 		super();
 		this.disc_id = disc_id;
 		this.disc_name = disc_name;
@@ -32,13 +32,13 @@ public class Disc {
 		this.turn = turn;
 		this.fade = fade;
 		this.plastic = plastic;
-		this.ident_id = ident_id;
+		this.id = id;
 	}
 
 
 
 
-	public Disc(String disc_name, int speed, int glide, int turn, int fade, String plastic, int ident_id) {
+	public Disc(String disc_name, int speed, int glide, int turn, int fade, String plastic, int id) {
 		super();
 		this.disc_name = disc_name;
 		this.speed = speed;
@@ -46,7 +46,7 @@ public class Disc {
 		this.turn = turn;
 		this.fade = fade;
 		this.plastic = plastic;
-		this.ident_id = ident_id;
+		this.id = id;
 	}
 
 
@@ -55,7 +55,7 @@ public class Disc {
 	@Override
 	public String toString() {
 		return "Disc [disc_id=" + disc_id + ", disc_name=" + disc_name + ", speed=" + speed + ", glide=" + glide
-				+ ", turn=" + turn + ", fade=" + fade + ", plastic=" + plastic + ", ident_id=" + ident_id + "]";
+				+ ", turn=" + turn + ", fade=" + fade + ", plastic=" + plastic + ", id=" + id + "]";
 	}
 
 
@@ -159,15 +159,15 @@ public class Disc {
 
 
 
-	public int getIdent_id() {
-		return ident_id;
+	public int getId() {
+		return id;
 	}
 
 
 
 
-	public void setIdent_id(int ident_id) {
-		this.ident_id = ident_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
@@ -181,7 +181,7 @@ public class Disc {
 		result = prime * result + ((disc_name == null) ? 0 : disc_name.hashCode());
 		result = prime * result + fade;
 		result = prime * result + glide;
-		result = prime * result + ident_id;
+		result = prime * result + id;
 		result = prime * result + ((plastic == null) ? 0 : plastic.hashCode());
 		result = prime * result + speed;
 		result = prime * result + turn;
@@ -211,7 +211,7 @@ public class Disc {
 			return false;
 		if (glide != other.glide)
 			return false;
-		if (ident_id != other.ident_id)
+		if (id != other.id)
 			return false;
 		if (plastic == null) {
 			if (other.plastic != null)

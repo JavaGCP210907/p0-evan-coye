@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,10 +34,10 @@ public class Menu {
 			
 			System.out.println("AllDiscs ==> List out all discs in your bag!");
 			System.out.println("AddDisc ==> Add a new disc to your bag!");
-			System.out.println("UpdateDisc ==> Change a property on any disc!");
-			System.out.println("RemoveDisc ==> Remove a disc from your bag!");
+			System.out.println("UpdatePlastic ==> Replacement disc with new plastic? Update your disc accordingly!");
+			System.out.println("RemoveDisc ==> Remove a disc by id from your bag!");
 			System.out.println("SpeedCheck ==> Get all discs with a certain speed!");
-			System.out.println("NewBrand ==> Add a new brand and type to the Identities table!");
+			System.out.println("NewBrand ==> Add a new brand and type to your disc identities!");
 			System.out.println("Exit ==> Exits from your bag!");
 			
 			
@@ -57,13 +58,15 @@ public class Menu {
 			}
 			
 			case "AddDisc": {
+				
+			try{
 				System.out.println("Enter disc name:");
 				String dname = scan.nextLine();
-				
-				System.out.println("Enter disc speed:");
+		
+				System.out.println("Enter disc speed");
 				int speed = scan.nextInt();
 				scan.nextLine();
-				
+			
 				System.out.println("Enter disc glide:");
 				int glide = scan.nextInt();
 				scan.nextLine();
@@ -80,7 +83,7 @@ public class Menu {
 				String plastic = scan.nextLine();
 				
 				System.out.println("Choose a disc identity from the following list");
-				System.out.println("Don't see a match? Use the menu option NewBrand to insert the one you need!");
+				System.out.println("Don't see an id match? Use the menu option NewBrand to insert the one you need!");
 				
 				List<Identity> idList = iDao.allIdentities();
 				
@@ -88,22 +91,43 @@ public class Menu {
 					System.out.println(i);
 				}
 				
-				int ident_id = scan.nextInt();
+				int id = scan.nextInt();
 				
-				Disc d = new Disc(dname, speed, glide, turn, fade, plastic, ident_id);
+				
+				Disc d = new Disc(dname, speed, glide, turn, fade, plastic, id);
 				
 				dDao.addDisc(d);
+			}catch(InputMismatchException e) {
+				System.out.println("Make sure speed, glide, turn and fade are numerical values! To start over type AddDisc");
+				e.printStackTrace();
 				
+			}finally {
+				scan.nextLine();
+			}
 				
 				break;
 			}
 			
-			case "UpdateDisc": {
+			case "UpdatePlastic": {
+				System.out.println("Enter the name of the disc with a new plastic!");
+				String dname = scan.nextLine();
+				
+				System.out.println("What kind of plastic is it now?");
+				String plastic = scan.nextLine();
+				
+				dDao.updateDiscPlastic(dname, plastic);
 				
 				break;
 			}
 			
 			case "RemoveDisc": {
+				System.out.println("Enter the id number of the disc you want to delete!");
+				int id = scan.nextInt();
+				scan.nextLine();
+				
+				dDao.removeDisc(id);
+				
+				System.out.println("The disc with id number " + id + " has been removed");
 				
 				break;
 			}

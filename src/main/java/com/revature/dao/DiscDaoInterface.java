@@ -14,6 +14,6 @@ public interface DiscDaoInterface {
 	
 	public void removeDisc(int id); // removes disc by disc_id
 	
-	public void updateDisc(int id); // updates a disc based on disc_id
+	public void updateDiscPlastic(String disc_name, String plastic); // updates a disc based on disc_id
 
 }
