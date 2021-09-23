@@ -123,7 +123,7 @@ public class DiscDao implements DiscDaoInterface {
 	public void removeDisc(int id) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			
-			String sql = "delete from discs where id = ?";
+			String sql = "delete from discs where disc_id = ?";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
@@ -152,7 +152,7 @@ public class DiscDao implements DiscDaoInterface {
 			
 			ps.executeUpdate();
 			
-			System.out.println(disc_name + " has a new plastic of " + plastic);
+			System.out.println(disc_name + " has a new plastic of " + plastic + "!");
 		}catch(SQLException e) {
 			System.out.println("Update disc failed!");
 			e.printStackTrace();

@@ -1,11 +1,13 @@
 package com.revature.models;
 
 import java.util.InputMismatchException;
+
 import java.util.List;
 import java.util.Scanner;
 
 import com.revature.dao.DiscDao;
 import com.revature.dao.IdentityDao;
+
 
 public class Menu {
 	
@@ -53,6 +55,7 @@ public class Menu {
 					System.out.println(d);
 				}
 				
+				//log.info("USER RETRIVED LIST OF ALL DISCS");
 				
 				break;
 			}
@@ -117,6 +120,8 @@ public class Menu {
 				
 				dDao.updateDiscPlastic(dname, plastic);
 				
+				//log.info("USER UPDATED THE PLASTIC OF A DISC");
+				
 				break;
 			}
 			
@@ -128,6 +133,8 @@ public class Menu {
 				dDao.removeDisc(id);
 				
 				System.out.println("The disc with id number " + id + " has been removed");
+				
+				//log.warn("USER REMOVED A DISC");
 				
 				break;
 			}
@@ -156,6 +163,7 @@ public class Menu {
 				Identity i = new Identity(brand, type);
 				
 				iDao.addBrand(i);
+				
 				
 				break;
 			}
